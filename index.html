@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P.V. Surya Narayana | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FF7D33;  /* Vibrant orange */
+      --primary-light: #FF9E66;
+      --primary-dark: #E64D00;
+      --secondary: #33B2FF;  /* Complementary blue */
+      --dark: #2A2A2A;
+      --light: #FFF5F0;  /* Very light orange tint */
+      --accent: #FFC233;  /* Golden yellow */
+      --gray: #6C757D;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f8e4d1?q=80&w=1470&auto=format&fit=crop') center/cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Profile Image with Flip Effect */
+    .profile-container {
+      perspective: 1000px;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    
+    .profile-card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+    
+    .profile-container:hover .profile-card {
+      transform: rotateY(180deg);
+    }
+    
+    .profile-front, .profile-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .profile-front {
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      z-index: 2;
+    }
+    
+    .profile-back {
+      background: linear-gradient(45deg, var(--primary-dark), var(--dark));
+      color: white;
+      transform: rotateY(180deg);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .profile-img {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+    }
+    
+    /* Navigation */
+    nav {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 4rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .about-content {
+        flex-direction: row;
+        align-items: center;
+      }
+      
+      .about-text {
+        flex: 2;
+      }
+      
+      .about-image {
+        flex: 1;
+        text-align: center;
+      }
+    }
+    
+    .about-image img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,125,51,0.1);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(255,125,51,0.15);
+      border-color: rgba(255,125,51,0.3);
+    }
+    
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+    
+    .project-info {
+      padding: 1.5rem;
+    }
+    
+    .project-info h3 {
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    
+    .project-info p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .project-tag {
+      background: var(--primary-light);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .project-links a:hover {
+      color: var(--primary-dark);
+    }
+    
+    /* Skills Section */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .skill-category {
+      background: rgba(255,125,51,0.05);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .skill-list {
+      list-style: none;
+    }
+    
+    .skill-list li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .skill-list li::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 1.5rem;
+      line-height: 0;
+    }
+    
+    /* Experience & Education */
+    .timeline {
+	
+      position: relative;
+      padding-left: 2rem;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 7px;
+      height: 100%;
+      width: 2px;
+      background: var(--primary);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -2rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid white;
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+    
+    .timeline-date {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-content h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .timeline-content p {
+      color: var(--gray);
+    }
+    
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+    
+    .contact-text h3 {
+      margin-bottom: 0.25rem;
+    }
+    
+    .contact-text a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-text a:hover {
+      color: var(--primary-dark);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background: var(--dark);
+      transform: translateY(-3px);
+    }
+    
+    /* Form Styles */
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,125,51,0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    
+    .copyright {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      nav a {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+    
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mb-3 { margin-bottom: 3rem; }
+    
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mt-3 { margin-top: 3rem; }
+    
+    .animate {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .animate-delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .animate-delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .animate-delay-3 {
+      animation-delay: 0.6s;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="profile-front">
+            <img src="https://lh3.googleusercontent.com/d/1xggImKHqmd_kcrGtCH2YjzxKyUgZzbJ7=w800" alt="P.V. Surya Narayana" class="profile-img">
+          </div>
+          <div class="profile-back">
+            <div>Java Developer,  ECE Entusiast ,  Tech Support, Philomath</div>
+          </div>
+        </div>
+      </div>
+      <h1>P.V. Surya Narayana</h1>
+      <p class="mb-1">Electronics Engineer & Developer</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <section id="about" class="section animate">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>👋 Hi! I’m Surya Narayana, an Electronics and Communication Engineering student at St.Peter's Engineering College, also pursuing a minor degree in AI and ML. I’m a quick learner and thinker, passionate about technology and innovation.</p>
+          <p>🏔️I’ve also won many prizes in paper presentations. As an aspiring developer, I’m eager to solve real-world problems and contribute to my fields Electronics and AI.</p>
+          <p>🧑‍💻 Aspring backend developer. And working on a project. </p>
+          <p>💡I’ve completed several projects in electronics, including:
+          </p>1) A Wifi control car using ESP8266</p>
+          <p>2) An automated street light system using LDR</p>
+          </p>📚 I enjoy attending technical events and connecting with fellow enthusiasts. Let’s connect and explore the world of electronics and communication, AI and Machine learning together</p>
+          <p>When I'm not coding or studying, you can find me playing cricket, watching sci-fi movies, watching anime or experimenting with new technologys.</p>
+          <div class="mt-2">
+            <a href="#contact" class="btn">Get In Touch</a>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop" alt="Working on project">
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section animate animate-delay-1">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://lh3.googleusercontent.com/d/1TXBZDZirFa2mIxJJtyOJpMyvArtQlqbj=w800" alt="In and Out People Counting System">
+          </div>
+          <div class="project-info">
+            <h3>In and Out People Counting System</h3>
+            <p>In and Out People Counting System uses computer vision and deep learning to track movement across a reference line, providing real-time occupancy data for security and crowd management.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">MobileNetSSD</span>
+              <span class="project-tag">Deep learning</span>
+            </div>
+            <div class="project-links">
+              <a href="https://drive.google.com/file/d/1UfYm8ZrbGmKafkJfoFzJazewqfS-jeBm/view?usp=sharing"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://lh3.googleusercontent.com/d/1r2v4fZiJNcieOD1kPp7Qvp_h_7Qt5gu0=w800" alt="Automatic Street light system">
+          </div>
+          <div class="project-info">
+            <h3>Automatic Street light system</h3>
+            <p>Automatic street light system uses LDR and IR sensors to detect darkness and track vehicles, adjusting brightness for real-time safety, security, and energy efficiency in urban environments.</p>
+            <div class="project-tags">
+              <span class="project-tag">Arduino</span>
+              <span class="project-tag">IR Sensor</span>
+              <span class="project-tag">LDR Sensor</span>
+              <span class="project-tag">Arduino IDE</span>
+              
+            </div>
+            <div class="project-links">
+              <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#"><i class="fab fa-github"></i> Source Code</a>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="text-center mt-3">
+        <a href="#" class="btn btn-outline">View All Projects</a>
+      </div>
+    </section>
+
+    <section id="skills" class="section animate animate-delay-2">
+      <h2 class="section-title">My Skills</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Frontend</h3>
+          <ul class="skill-list">
+            <li>HTML</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Backend</h3>
+          <ul class="skill-list">
+            <li>Python</li>
+            <li>Java</li>
+            <li>C</li>
+          </ul>
+        </div>
+        
+        
+        <div class="skill-category">
+          <h3>Electronics</h3>
+          <ul class="skill-list">
+            <li>Embedded Systems</li>
+            <li>Circuit Design</li>
+            <li>Arduino/Raspberry Pi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section animate animate-delay-1">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2025 - Present</div>
+          <div class="timeline-content">
+            <h3>Senior Associate</h3>
+            <p>SPECANCINES Alumni Association</p>
+            <ul>
+              <li>Report and MOM Writing</li>
+              <li>Office Etiquette</li>
+              <li>Interpersonal Skills</li>
+            </ul>
+          </div>
+        </div>
+       </div>
+    </section>
+
+    <section id="education" class="section animate animate-delay-2">
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2022 - 2026</div>
+          <div class="timeline-content">
+            <h3>Bachelor of Technology in ECE</h3>
+            <p>St. Peters Engineering College</p>
+            <p>CGPA: 9.4/10.0</p>
+            <p>Relevant Coursework: Digital Signal Processing, Microprocessors, IoT, Data Structures</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">2019 - 2021</div>
+          <div class="timeline-content">
+            <h3>Higher Secondary Education</h3>
+            <p>Narayana Junior College</p>
+            <p>Major: Physics, Chemistry, Mathematics</p>
+            <p>CGPA: 8.6/10.0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section animate-delay-3">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <a href="mailto:payyaulasurya039@gmail.com">payyaulasurya039@gmail.com</a>
+            </div>
+          </div>
+          
+          <!--<div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Phone</h3>
+              <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </div>
+          </div>-->
+          
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Location</h3>
+              <p>Subhash Nagar, IDA Jeedmitla, Hyderabad</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/p-v-surya-narayana-84a0a124b/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Dark-Dynamight" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form>
+            <div class="mb-1">
+              <input type="text" placeholder="Your Name" class="form-control">
+            </div>
+            <div class="mb-1">
+              <input type="email" placeholder="Your Email" class="form-control">
+            </div>
+            <div class="mb-1">
+              <input type="text" placeholder="Subject" class="form-control">
+            </div>
+            <div class="mb-1">
+              <textarea placeholder="Your Message" rows="5" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h3>P.V. Surya Narayana</h3>
+      <p>Electronics Engineer & Full Stack Developer</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="copyright">&copy; 2025 P.V. Surya Narayana. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple animation trigger on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
