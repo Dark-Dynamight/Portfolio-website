@@ -212,18 +212,18 @@
         </div>
         
         <div class="contact-form">
-          <form>
+          <form action="mailto:payyaulasurya039@gmail.com" method="post" enctype="text/plain">
             <div class="mb-1">
-              <input type="text" placeholder="Your Name" class="form-control">
+              <input type="text" name="name" placeholder="Your Name" class="form-control" required>
             </div>
             <div class="mb-1">
-              <input type="email" placeholder="Your Email" class="form-control">
+              <input type="email" name="email" placeholder="Your Email" class="form-control" required>
             </div>
             <div class="mb-1">
-              <input type="text" placeholder="Subject" class="form-control">
+              <input type="text" name="subject" placeholder="Subject" class="form-control" value="Your Message" required>
             </div>
             <div class="mb-1">
-              <textarea placeholder="Your Message" rows="5" class="form-control"></textarea>
+              <textarea name="message" placeholder="Your Message" rows="5" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn">Send Message</button>
           </form>
