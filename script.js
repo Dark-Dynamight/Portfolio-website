@@ -16,3 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(section);
   });
 });
+document.querySelector('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(() => window.location.href = form.querySelector('[name="_next"]').value)
+  .catch(() => alert('Error occurred'));
+});
