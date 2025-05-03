@@ -212,12 +212,16 @@
         </div>
         
         <div class="contact-form">
-          <form action="mailto:payyaulasurya039@gmail.com" method="post" enctype="text/plain">
+          <form action="https://formspree.io/f/xeogalgn" method="POST">
+            <!-- Hidden fields for Formspree settings -->
+            <input type="hidden" name="_subject" value="New message from your portfolio">
+            <input type="hidden" name="_next" value="https://yourportfolio.com/thanks.html"> <!-- Optional thank-you page -->
+            <!-- User inputs -->
             <div class="mb-1">
               <input type="text" name="name" placeholder="Your Name" class="form-control" required>
             </div>
             <div class="mb-1">
-              <input type="email" name="email" placeholder="Your Email" class="form-control" required>
+              <input type="email" name="_replyto" placeholder="Your Email" class="form-control" required>
             </div>
             <div class="mb-1">
               <input type="text" name="subject" placeholder="Subject" class="form-control" value="Your Message" required>
